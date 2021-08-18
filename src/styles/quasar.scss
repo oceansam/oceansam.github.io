@@ -1,3 +1,27 @@
-@import './quasar.variables.scss';
-@import '~quasar-styl';
+@import "./quasar.variables.scss";
+@import "~quasar-styl";
 // @import '~quasar-addon-styl';
+
+.icon {
+	cursor: pointer;
+	&:hover {
+		opacity: 70%;
+		transition: 0.2s;
+	}
+}
+.float-image {
+	width: 150px;
+	height: auto;
+}
+.m-top-lg{
+    margin-top: 150px;
+}
+.txt-md {
+	font-size: 1.15rem;
+}
+.txt-lg {
+	font-size: 1.875rem;
+}
+.no-dec {
+	text-decoration: none;
+}

@@ -1,8 +1,14 @@
 <template>
-	<router-link :to="{ hash: `#${anchor}` }">{{ text }}</router-link>
+	<router-link class="no-dec route-tab" :to="{ hash: `#${anchor}` }">{{
+		text
+	}}</router-link>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.route-tab{
+	color: white;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from "vue";

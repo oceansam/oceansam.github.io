@@ -1,8 +1,8 @@
 <template>
-	<div class="flex">
-		<home-button />
+	<div class="row items-center root">
+		<home-button class="q-mx-xl" />
 		<path-button
-			class="q-mx-xl"
+			class="txt-md q-mx-xl"
 			v-for="tab in headerTabs"
 			:key="tab.text"
 			:text="tab.text"
@@ -12,7 +12,11 @@
 </template>
 
 <style lang="scss" scoped>
-
+.root {
+	width: 100%;
+	background-color: #65738c;
+	height: 8vh !important;
+}
 </style>
 
 <script lang="ts">
