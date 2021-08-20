@@ -34,12 +34,11 @@
 				>
 			</div>
 		</div>
-		<div class="row justify-center m-top-lg">
-			<greeting-wrapper :info="greetingInfo" />
+		<div class="row justify-center m-top-lg" id="greeting">
+			<greeting-wrapper :info="greetingInfo" :isLeftFloat="true" />
 		</div>
 		<div class="row justify-center test" id="about">
-			WHO AM I
-			<about-wrapper />
+			<greeting-wrapper :info="aboutInfo" />
 		</div>
 		<div class="row justify-center test" id="projects">
 			PROJECTS
@@ -80,13 +79,21 @@ export default defineComponent({
 		GreetingWrapper,
 	},
 	setup() {
+		const age = 20;
+		const year = "second";
 		const greetingInfo = {
 			title: "Hello Visitors!",
-			content:
-				"I'm a second year Computer Science student attending Ryerson University in the CO-OP program.",
+			content: `I'm a ${year} year Computer Science student attending Ryerson University in the CO-OP program.`,
+			imgUrl: 'assets/PopupRes.svg'
+		};
+		const aboutInfo = {
+			title: "Who am I?",
+			content: `My name is Samee Chowdhury, I'm ${age} years old and am passionate about creating things. I make side projects that interest me. Whether its through applications, games with the Unity engine, or through the web like what you're reading right now!`,
+			imgUrl: 'assets/tree.svg'
 		};
 		return {
 			greetingInfo,
+			aboutInfo,
 		};
 	},
 });
