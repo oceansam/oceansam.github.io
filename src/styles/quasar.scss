@@ -1,7 +1,15 @@
 @import "./quasar.variables.scss";
 @import "~quasar-styl";
-// @import '~quasar-addon-styl';
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
+// @import '~quasar-addon-styl';
+@font-face {
+	font-family: "terminal";
+	src: url("./SourceCodePro-Light.ttf");
+}
+* {
+	font-family: "terminal", monospace;
+}
 .icon {
 	cursor: pointer;
 	&:hover {
@@ -13,12 +21,22 @@
 .m-top-lg {
 	margin-top: 150px;
 }
-.txt-md {
-	font-size: 1.15rem;
+
+.txt {
+	&-md {
+		font-size: 1.15rem;
+	}
+	&-lg {
+		font-size: 1.875rem;
+	}
+	&-xl {
+		font-size: 2rem;
+	}
+	&-header {
+		font-size: 4rem;
+	}
 }
-.txt-lg {
-	font-size: 1.875rem;
-}
+
 .no-dec {
 	text-decoration: none;
 }

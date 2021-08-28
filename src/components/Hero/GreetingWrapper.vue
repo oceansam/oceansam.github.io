@@ -1,25 +1,27 @@
 <template>
 	<div class="row items-center" v-if="isLeftFloat">
+		<q-img class="asset q-mr-xl" :src="info.imgUrl" />
 		<div class="col">
-			<q-img :src="info.imgUrl" />
-		</div>
-		<div class="col q-ml-xl">
 			<content-text :title="info.title" :content="info.content" />
 		</div>
 	</div>
 	<div class="row items-center" v-else>
-		<div class="col q-mr-xl">
+		<div class="col">
 			<content-text :title="info.title" :content="info.content" />
 		</div>
-		<div class="col">
-			<q-img :src="info.imgUrl" />
-		</div>
+		<q-img class="asset q-ml-xl" :src="info.imgUrl" />
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .col {
 	width: 500px !important;
+	margin-left: auto;
+	margin-right: auto;
+}
+.asset {
+	width: 320px;
+	height: auto;
 }
 </style>
 <script lang="ts">

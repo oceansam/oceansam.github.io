@@ -1,6 +1,6 @@
 <template>
-	<div class="txt-lg">{{ title }}</div>
-	<div class="content txt-md">
+	<div class="txt-xl text-bold">{{ title }}</div>
+	<div class="content txt-md q-mt-md">
 		{{ content }}
 	</div>
 </template>
