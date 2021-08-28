@@ -1,9 +1,7 @@
 <template>
-	<div>
-		<div class="txt-lg">{{ title }}</div>
-		<div class="txt-md">
-			{{ content }}
-		</div>
+	<div class="txt-lg">{{ title }}</div>
+	<div class="content txt-md">
+		{{ content }}
 	</div>
 </template>
 

@@ -1,15 +1,27 @@
 <template>
-	<div class="row" v-if="isLeftFloat">
-		<q-img class="float-image col" :src="info.imgUrl" />
-		<content-text class="col" :title="info.title" :content="info.content" />
+	<div class="row items-center" v-if="isLeftFloat">
+		<div class="col">
+			<q-img :src="info.imgUrl" />
+		</div>
+		<div class="col q-ml-xl">
+			<content-text :title="info.title" :content="info.content" />
+		</div>
 	</div>
-	<div class="row" v-else>
-		<content-text class="col" :title="info.title" :content="info.content" />
-		<q-img class="float-image col" :src="info.imgUrl" />
+	<div class="row items-center" v-else>
+		<div class="col q-mr-xl">
+			<content-text :title="info.title" :content="info.content" />
+		</div>
+		<div class="col">
+			<q-img :src="info.imgUrl" />
+		</div>
 	</div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.col {
+	width: 500px !important;
+}
+</style>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import ContentText from "@/components/ContentText.vue";
