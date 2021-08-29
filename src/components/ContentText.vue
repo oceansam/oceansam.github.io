@@ -1,5 +1,5 @@
 <template>
-	<div class="txt-xl text-bold">{{ title }}</div>
+	<div class="txt-header text-bold">{{ title }}</div>
 	<div class="content txt-md q-mt-md">
 		{{ content }}
 	</div>

@@ -2,69 +2,54 @@
 	<!-- <div class="row">
 		<navigation-wrapper />
 	</div> -->
-	<div class="wrapper">
-		<div>
-			<div class="row justify-center">
-				<h1>Hi, I'm Sam!</h1>
-			</div>
-			<div class="row justify-center q-gutter-xl">
-				<q-icon class="icon" name="fab fa-github" size="3rem"
-					><q-tooltip
-						transition-show="scale"
-						class="tool-tip"
-						transition-hide="scale"
-						>Github</q-tooltip
-					></q-icon
-				>
-				<q-icon class="icon" name="far fa-file" size="3rem"
-					><q-tooltip
-						transition-show="scale"
-						class="tool-tip"
-						transition-hide="scale"
-						>Resume</q-tooltip
-					></q-icon
-				>
-				<q-icon class="icon" name="fab fa-linkedin" size="3rem"
-					><q-tooltip
-						transition-show="scale"
-						class="tool-tip"
-						transition-hide="scale"
-						>Linkedin</q-tooltip
-					></q-icon
-				>
-			</div>
+	<hero-wrapper />
+	<!-- Greeting (landing) -->
+	<div class="row justify-center m-top-lg" id="greeting">
+		<content-float :info="greetingInfo" :isLeftFloat="true" />
+	</div>
+	<!-- Who Am I? -->
+	<div class="row justify-center m-top-lg test" id="about">
+		<content-float :info="aboutInfo" />
+	</div>
+	<!-- Projects -->
+	<div>
+		<div class="row justify-center text-bold txt-header m-top-lg">
+			Projects
 		</div>
-		<!-- Greeting (landing) -->
-		<div class="row justify-center m-top-lg" id="greeting">
-			<greeting-wrapper :info="greetingInfo" :isLeftFloat="true" />
+		<div class="row justify-center q-mt-xl" id="projects">
+			<project-grid :projects="projectsInfo" />
 		</div>
-		<!-- Who Am I? -->
-		<div class="row justify-center m-top-lg" id="about">
-			<greeting-wrapper :info="aboutInfo" />
+	</div>
+	<!-- Skills -->
+	<div class="test">
+		<div class="row justify-center text-bold txt-header m-top-lg">
+			Skills
 		</div>
-		<!-- Projects -->
-		<div>
-			<div class="row justify-center text-bold txt-header m-top-lg">
-				Projects
-			</div>
-			<div class="row justify-center q-mt-xl" id="projects">
-				<project-grid :projects="projectsInfo" />
-			</div>
-		</div>
-		<!-- Skills -->
-		<div class="row justify-center m-top-lg" id="skills">
+		<div class="row justify-center q-mt-xl " id="skills">
 			<skill-grid :skillList="skillsInfo" />
 		</div>
-		<!-- Aspirations -->
-		<div class="row justify-center m-top-lg" id="aspirations">
-			ASPIRATIONS
-		</div>
-		<div class="row justify-center m-top-lg" id="contact">
-			CONTACT ME
-		</div>
+	</div>
+	<!-- Aspirations -->
+	<div class="row justify-center m-top-lg " id="aspirations">
+		<content-float :info="aspirationInfo" :isLeftFloat="true" />
+	</div>
+	<!-- Contact -->
+	<div class="row justify-center m-top-lg" id="contact">
+		<pre class="snippet">
+<code>
+ <span class="bracket">{</span>
+   <span class="key">"name"</span><span class="colon"> : </span><span class="value">"Sam"</span>
+   <span class="key">"email"</span><span class="colon"> : </span><span class="value">"oceansam101@gmail.com"</span>
+   <span class="key">"phone"</span><span class="colon"> : </span><span class="value">"4169979768"</span>
+ <span class="bracket">}</span>
+
+</code>
+		</pre>
 	</div>
 </template>
 <style lang="scss" scoped>
+@import "@/styles/quasar.variables.scss";
+
 // Row styling
 // .row {
 // 	padding: 10px 15px;
@@ -76,25 +61,55 @@
 // 		border: 1px solid rgba(86, 61, 124, 0.2);
 // 	}
 // }
+.test {
+	background-color: rgb(226, 226, 226);
+}
+.snippet {
+	background-color: rgb(58, 58, 58);
+}
+.key {
+	color: #c5425a;
+}
+.value {
+	color: #5a994d;
+}
+.colon {
+	color: rgb(28, 207, 207);
+}
+.bracket {
+	color: rgb(173, 173, 173);
+}
+
+.waveBack {
+	background-color: #ccc5ba;
+}
 </style>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 // import NavigationWrapper from "@/components/Navigation/NavigationWrapper.vue";
-import GreetingWrapper from "@/components/Hero/GreetingWrapper.vue";
+import ContentFloat from "@/components/Hero/ContentFloat.vue";
 import ProjectGrid from "@/components/Grids/ProjectGrid.vue";
 import SkillGrid from "@/components/Grids/SkillGrid.vue";
+import HeroWrapper from "@/components/Hero/HeroWrapper.vue";
 export default defineComponent({
 	name: "Home",
 	components: {
 		// NavigationWrapper,
-		GreetingWrapper,
+		ContentFloat,
 		ProjectGrid,
 		SkillGrid,
+		HeroWrapper,
 	},
 	setup() {
+		// Dynamic Params
 		const age = 20;
-		const year = "second";
+		const year = "third";
+		const meta = {
+			name: "Sam",
+			age: `${age}`,
+		};
+		// JSON Data
 		const greetingInfo = {
 			title: "Hello Visitors!",
 			content: `I'm a ${year} year Computer Science student attending Ryerson University in the CO-OP program.`,
@@ -105,6 +120,11 @@ export default defineComponent({
 			content: `My name is Samee Chowdhury, I'm ${age} years old and am passionate about creating things. I make side projects that interest me. Whether its through applications, games with the Unity engine, or through the web like what you're reading right now!`,
 			imgUrl: "assets/tree.svg",
 		};
+		const aspirationInfo = {
+			title: "Aspirations",
+			content: `I'm interested in learning and gaining experience in web development as well as creating video games as a side hobby. Furthermore, I enjoy drawing pixel art, creating side projects and reverse engineering tech.`,
+			imgUrl: "assets/mountain.svg",
+		};
 		const projectsInfo = [
 			{
 				name: "Get Me Home!",
@@ -114,7 +134,7 @@ export default defineComponent({
 					"https://camo.githubusercontent.com/7f8bb1a5c4e9478b678e32bbd537a627b3609f15d6f9ae3cc9e9baaaeaf77cac/68747470733a2f2f6368616c6c656e6765706f73742d73332d6368616c6c656e6765706f73742e6e6574646e612d73736c2e636f6d2f70686f746f732f70726f64756374696f6e2f736f6674776172655f70686f746f732f3030302f3933332f3639322f64617461732f67616c6c6572792e6a7067",
 				githubLink: "https://github.com/oceansam/SafeSpace",
 				devpostLink: "https://devpost.com/software/get-me-home-safe",
-				techStack: "JS/HTML/CSS,",
+				techStack: "JS/HTML/CSS",
 			},
 			{
 				name: "Smart Pot.",
@@ -128,25 +148,39 @@ export default defineComponent({
 		];
 		const skillsInfo = [
 			{
-				name: "JS/TS",
+				name: "Javascript",
 				imgUrl: "assets/skills/js.svg",
 			},
 			{
+				name: "Typescript",
+				imgUrl: "assets/skills/ts.svg",
+			},
+			{
 				name: "Vue.js",
-				imgUrl: "assets/skills/php.svg",
+				imgUrl: "assets/skills/vue.svg",
 			},
 			{
 				name: "HTML5",
 				imgUrl: "assets/skills/html.svg",
 			},
 			{
-				name: "C#",
-				imgUrl: "assets/skills/csharp.svg",
+				name: "Python",
+				imgUrl: "assets/skills/py.svg",
+			},
+			{
+				name: "Java",
+				imgUrl: "assets/skills/java.svg",
+			},
+			{
+				name: "MySql",
+				imgUrl: "assets/skills/sql.svg",
 			},
 		];
 		return {
+			meta,
 			greetingInfo,
 			aboutInfo,
+			aspirationInfo,
 			projectsInfo,
 			skillsInfo,
 		};
