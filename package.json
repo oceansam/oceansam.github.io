@@ -5,11 +5,20 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
+    "@quasar/cli": "^1.2.1",
     "@quasar/extras": "^1.0.0",
+    "@sendgrid/mail": "^7.4.7",
+    "axios": "^0.22.0",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
     "quasar": "^2.0.0-beta.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"

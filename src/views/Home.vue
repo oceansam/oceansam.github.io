@@ -1,14 +1,11 @@
 <template>
-	<!-- <div class="row">
-		<navigation-wrapper />
-	</div> -->
 	<hero-wrapper />
 	<!-- Greeting (landing) -->
 	<div class="row justify-center m-top-lg" id="greeting">
 		<content-float :info="greetingInfo" :isLeftFloat="true" />
 	</div>
 	<!-- Who Am I? -->
-	<div class="row justify-center m-top-lg test" id="about">
+	<div class="row justify-center m-top-lg" id="about">
 		<content-float :info="aboutInfo" />
 	</div>
 	<!-- Projects -->
@@ -21,13 +18,18 @@
 		</div>
 	</div>
 	<!-- Skills -->
-	<div class="test">
-		<div class="row justify-center text-bold txt-header m-top-lg">
-			Skills
+
+	<div class="m-top-lg">
+		<top-wave />
+		<div class="waveSection">
+			<div class="row justify-center text-bold txt-header text-white">
+				Skills
+			</div>
+			<div class="row justify-center q-mt-xl " id="skills">
+				<skill-grid :skillList="skillsInfo" />
+			</div>
 		</div>
-		<div class="row justify-center q-mt-xl " id="skills">
-			<skill-grid :skillList="skillsInfo" />
-		</div>
+		<bot-wave />
 	</div>
 	<!-- Aspirations -->
 	<div class="row justify-center m-top-lg " id="aspirations">
@@ -35,7 +37,8 @@
 	</div>
 	<!-- Contact -->
 	<div class="row justify-center m-top-lg" id="contact">
-		<pre class="snippet">
+		<contact-grid />
+		<!-- <pre class="snippet">
 <code>
  <span class="bracket">{</span>
    <span class="key">"name"</span><span class="colon"> : </span><span class="value">"Sam"</span>
@@ -44,46 +47,10 @@
  <span class="bracket">}</span>
 
 </code>
-		</pre>
+		</pre> -->
 	</div>
+	<div class="m-top-lg" />
 </template>
-<style lang="scss" scoped>
-@import "@/styles/quasar.variables.scss";
-
-// Row styling
-// .row {
-// 	padding: 10px 15px;
-// 	background-color: rgba(86, 61, 124, 0.15);
-// 	border: 1px solid rgba(86, 61, 124, 0.2);
-// 	div {
-// 		padding: 10px 15px;
-// 		background-color: rgba(86, 61, 124, 0.15);
-// 		border: 1px solid rgba(86, 61, 124, 0.2);
-// 	}
-// }
-.test {
-	background-color: rgb(226, 226, 226);
-}
-.snippet {
-	background-color: rgb(58, 58, 58);
-}
-.key {
-	color: #c5425a;
-}
-.value {
-	color: #5a994d;
-}
-.colon {
-	color: rgb(28, 207, 207);
-}
-.bracket {
-	color: rgb(173, 173, 173);
-}
-
-.waveBack {
-	background-color: #ccc5ba;
-}
-</style>
 
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -92,6 +59,9 @@ import ContentFloat from "@/components/Hero/ContentFloat.vue";
 import ProjectGrid from "@/components/Grids/ProjectGrid.vue";
 import SkillGrid from "@/components/Grids/SkillGrid.vue";
 import HeroWrapper from "@/components/Hero/HeroWrapper.vue";
+import ContactGrid from "@/components/Grids/ContactGrid.vue";
+import TopWave from "@/components/TopWave.vue";
+import BotWave from "@/components/BotWave.vue";
 export default defineComponent({
 	name: "Home",
 	components: {
@@ -100,6 +70,9 @@ export default defineComponent({
 		ProjectGrid,
 		SkillGrid,
 		HeroWrapper,
+		TopWave,
+		BotWave,
+		ContactGrid,
 	},
 	setup() {
 		// Dynamic Params
@@ -129,9 +102,8 @@ export default defineComponent({
 			{
 				name: "Get Me Home!",
 				description:
-					"Get Me Home Safe’ is a web based application that visualizes the unsafe areas around the campus.",
-				featureImage:
-					"https://camo.githubusercontent.com/7f8bb1a5c4e9478b678e32bbd537a627b3609f15d6f9ae3cc9e9baaaeaf77cac/68747470733a2f2f6368616c6c656e6765706f73742d73332d6368616c6c656e6765706f73742e6e6574646e612d73736c2e636f6d2f70686f746f732f70726f64756374696f6e2f736f6674776172655f70686f746f732f3030302f3933332f3639322f64617461732f67616c6c6572792e6a7067",
+					"Get Me Home Safe’ is a web based application that visualizes the unsafe areas around the campus through community driven feedback.",
+				featureImage: "assets/projects/staysafe.png",
 				githubLink: "https://github.com/oceansam/SafeSpace",
 				devpostLink: "https://devpost.com/software/get-me-home-safe",
 				techStack: "JS/HTML/CSS",
@@ -140,10 +112,26 @@ export default defineComponent({
 				name: "Smart Pot.",
 				description:
 					"SmartPot is a modern approach to tracking plant life through everday applications. We make use of both webpages and discord to give users feedback on their plant status.",
-				featureImage: "https://i.imgur.com/IRY2GDM.png",
+				featureImage: "assets/projects/smartpot.png",
 				githubLink: "https://github.com/oceansam/SmartPot",
 				devpostLink: "https://devpost.com/software/smartpot-f149eq",
 				techStack: "TS/VUE/SASS",
+			},
+			{
+				name: "ArtBlock",
+				description:
+					"Art Block is a secure platform for exhibiting and collecting fine art digital assets, built exclusively for contemporary artists, galleries, and collectors.",
+				featureImage: "assets/projects/artblock.png",
+				techStack: "TS/VUE/SASS",
+			},
+			{
+				name: "PixelIT!",
+				description:
+					"PixelIT is a memorization game where one views a pixel image for 10 seconds to memorize it. After this 10 second timer they need to recreate the pixel art and have the bot mark its accuracy.",
+				featureImage: "assets/projects/pixelit.png",
+				githubLink: "https://github.com/oceansam/SmartPot",
+				devpostLink: "https://devpost.com/software/smartpot-f149eq",
+				techStack: "JS/HTML/CSS",
 			},
 		];
 		const skillsInfo = [
@@ -187,3 +175,25 @@ export default defineComponent({
 	},
 });
 </script>
+<style lang="scss" scoped>
+@import "@/styles/quasar.variables.scss";
+
+.waveSection {
+	background-color: $background;
+}
+.snippet {
+	background-color: rgb(58, 58, 58);
+}
+.key {
+	color: #c5425a;
+}
+.value {
+	color: #5a994d;
+}
+.colon {
+	color: rgb(28, 207, 207);
+}
+.bracket {
+	color: rgb(173, 173, 173);
+}
+</style>

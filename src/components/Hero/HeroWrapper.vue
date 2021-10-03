@@ -5,30 +5,33 @@
 				<h1 class="title">{{ title }}<span class="blinker">|</span></h1>
 			</div>
 			<div class="row justify-center q-gutter-xl sky p-bot-lg">
-				<q-icon class="icon" name="fab fa-github" size="3rem"
-					><q-tooltip
+				<q-btn class="icon" fab style="background: #383838">
+					<q-icon color="white" name="fab fa-github" size="4rem"></q-icon>
+					<q-tooltip
 						transition-show="scale"
 						class="tool-tip"
 						transition-hide="scale"
 						>Github</q-tooltip
-					></q-icon
-				>
-				<q-icon class="icon" name="far fa-file" size="3rem"
-					><q-tooltip
+					>
+				</q-btn>
+				<q-btn class="icon" fab style="background: #383838">
+					<q-icon color="white" name="far fa-file" size="4rem"></q-icon>
+					<q-tooltip
 						transition-show="scale"
 						class="tool-tip"
 						transition-hide="scale"
 						>Resume</q-tooltip
-					></q-icon
-				>
-				<q-icon class="icon" name="fab fa-linkedin" size="3rem"
-					><q-tooltip
+					>
+				</q-btn>
+				<q-btn class="icon" fab style="background: #383838">
+					<q-icon color="white" name="fab fa-linkedin" size="4rem"></q-icon>
+					<q-tooltip
 						transition-show="scale"
 						class="tool-tip"
 						transition-hide="scale"
 						>Linkedin</q-tooltip
-					></q-icon
-				>
+					>
+				</q-btn>
 			</div>
 			<div class="row justify-center">
 				<q-icon

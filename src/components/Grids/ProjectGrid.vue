@@ -1,42 +1,55 @@
 <template>
 	<q-scroll-area
 		class="q-pl-xl q-py-md q-mb-xl"
-		style="	height: 750px; width: 100%;"
+		style="	height: 800px; width: 100%;"
 		:visible="true"
 	>
-		<div class="test2">
+		<div class="wrapper">
 			<div v-for="(project, index) in projects" :key="index">
 				<q-card class="project-card q-mr-xl">
-					<q-img :src="project.featureImage" />
+					<q-img :src="project.featureImage" height="280px" />
 
 					<q-card-section>
-						<div class="txt-sm text-orange-9">
-							{{ project.techStack }}
-						</div>
-						<div class="txt-xl text-bold q-mt-sm q-mb-xs">
+						<div class="txt-xl text-bold q-mt-sm">
 							{{ project.name }}
+						</div>
+						<div class="txt-sm tech-stack text-bold q-mb-md">
+							{{ project.techStack }}
 						</div>
 						<div class="txt-md content">
 							{{ project.description }}
 						</div>
 					</q-card-section>
 					<q-card-actions>
-						<q-icon class="icon" name="fab fa-github" size="3rem"
-							><q-tooltip
-								transition-show="scale"
-								class="tool-tip"
-								transition-hide="scale"
-								>Github</q-tooltip
-							></q-icon
+						<a
+							v-if="project.githubLink"
+							class="ref-link"
+							:href="project.githubLink"
 						>
-						<q-icon class="icon" name="fab fa-dev" size="3rem">
-							<q-tooltip
-								transition-show="scale"
-								class="tool-tip"
-								transition-hide="scale"
-								>Devpost</q-tooltip
+							<q-icon class="icon" name="fab fa-github" size="3rem">
+								<a :href="project.githubLink" />
+								<q-tooltip
+									transition-show="scale"
+									class="tool-tip"
+									transition-hide="scale"
+									>Github</q-tooltip
+								></q-icon
 							>
-						</q-icon>
+						</a>
+						<a
+							v-if="project.devpostLink"
+							class="ref-link"
+							:href="project.devpostLink"
+						>
+							<q-icon class="icon" name="fab fa-dev" size="3rem">
+								<q-tooltip
+									transition-show="scale"
+									class="tool-tip"
+									transition-hide="scale"
+									>Devpost</q-tooltip
+								>
+							</q-icon>
+						</a>
 					</q-card-actions>
 				</q-card>
 			</div>
@@ -44,6 +57,8 @@
 	</q-scroll-area>
 </template>
 <style lang="scss" scoped>
+@import "@/styles/quasar.variables.scss";
+
 .project-card {
 	width: 500px;
 }
@@ -51,19 +66,35 @@
 .content {
 	min-height: 150px;
 }
-.test2 {
+.wrapper {
 	display: flex;
 	flex-wrap: nowrap;
+}
+.tech-stack {
+	color: $background;
+}
+.ref-link {
+	color: black;
 }
 </style>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import { useRouter } from "vue-router";
 import { ProjectInfo } from "@/models/BoxInfo";
 
 export default defineComponent({
 	name: "ProjectGrid",
 	props: {
 		projects: Object as PropType<ProjectInfo>,
+	},
+	setup() {
+		const $route = useRouter();
+		function handleRedirect(url: string) {
+			$route.push(url);
+		}
+		return {
+			handleRedirect,
+		};
 	},
 });
 </script>

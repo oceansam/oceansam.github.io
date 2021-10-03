@@ -8,9 +8,8 @@
 	font-family: "Source Code Pro", monospace;
 }
 .icon {
-	cursor: pointer;
 	&:hover {
-		opacity: 70%;
+		opacity: 85%;
 		transition: 0.2s;
 	}
 }
