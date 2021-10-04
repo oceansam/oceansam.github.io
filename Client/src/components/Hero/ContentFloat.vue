@@ -20,7 +20,7 @@
 	margin-right: auto;
 }
 .asset {
-	width: 320px;
+	width: 30rem;
 	height: auto;
 }
 </style>

@@ -9,6 +9,18 @@
 			</div>
 		</div>
 		<div class="col">
+			<div v-if="error" class="warning-alert row">
+				<div class="col-2">
+					<q-icon
+						class="warning-icon"
+						name="warning"
+						style="font-size: 4rem;"
+					/>
+				</div>
+				<div class="col-10">
+					{{ error }}
+				</div>
+			</div>
 			<q-form @submit.prevent="sendEmail">
 				<q-input
 					class="q-mt-md"
@@ -31,7 +43,7 @@
 					label="message"
 					type="textarea"
 				/>
-				<q-btn class="submit-button q-mt-md" type="submit"
+				<q-btn class="submit-button q-mt-md" type="submit" :loading="isLoading"
 					><div class="txt-md">Send</div></q-btn
 				>
 			</q-form>
@@ -41,14 +53,27 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { setFormLimit, readFormLimit } from "@/utils/SpamDetection";
 import axios from "axios";
 export default defineComponent({
 	setup() {
+		// Sendgrid metadata
 		const name = ref("");
 		const email = ref("");
 		const message = ref("");
 		const verifiedSender = "s2chowdhury@ryerson.ca";
+		const error = ref("");
+
+		const isLoading = ref(false);
+
+		function reset() {
+			name.value = "";
+			email.value = "";
+			message.value = "";
+		}
+
 		async function sendEmail() {
+			isLoading.value = true;
 			const url = "http://localhost:7070/contact";
 			const msg = {
 				to: "oceansam101@gmail.com",
@@ -56,23 +81,38 @@ export default defineComponent({
 				subject: `${name.value} Has Contacted You!`,
 				text: `Message from: ${email.value}.\n${message.value}`,
 			};
-			console.log("SendingFunc", msg);
-			axios
-				.post(url)
-				.then((response) => {
-					console.log("did it", response);
-				})
-				.catch((error: Error) => {
-					console.log(error);
-				});
+			const status = readFormLimit();
+			if (status.value == undefined) {
+				axios
+					.post(url, msg)
+					.then((res) => {
+						if (res) {
+							error.value = "";
+							setFormLimit();
+						}
+						isLoading.value = false;
+					})
+					.catch((err: Error) => {
+						console.log(err);
+						isLoading.value = false;
+						error.value =
+							"Oops Something went wrong, Please contact me at oceansam101@gmail.com instead";
+					});
+			} else {
+				isLoading.value = false;
+				error.value =
+					"Submissions are limited to prevent spam. Please try again later or contact me directly at oceansam101@gmail.com";
+			}
 		}
 		return {
 			name,
 			email,
 			message,
-
+			error,
+			isLoading,
 			// Functions
 			sendEmail,
+			reset,
 		};
 	},
 });
@@ -88,5 +128,12 @@ export default defineComponent({
 	width: 100%;
 	background: $background;
 	color: white;
+}
+.warning-alert {
+	border: 2px solid $background;
+	padding: 10px;
+	.warning-icon {
+		color: $background;
+	}
 }
 </style>

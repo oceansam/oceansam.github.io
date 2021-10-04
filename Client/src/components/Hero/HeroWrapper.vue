@@ -95,10 +95,8 @@ export default defineComponent({
 					if (num == titleRef.length) {
 						clearInterval(interval);
 					}
-					console.log("trigger");
 				}, 150);
 			}
-			console.log("trigger2x");
 		});
 		return {
 			title,

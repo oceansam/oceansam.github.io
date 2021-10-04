@@ -1,7 +1,7 @@
 <template>
 	<q-scroll-area
-		class="q-pl-xl q-py-md q-mb-xl"
-		style="	height: 800px; width: 100%;"
+		:thumb-style="thumbStyle"
+		class="scroll-area q-pl-xl q-py-md q-mb-xl"
 		:visible="true"
 	>
 		<div class="wrapper">
@@ -76,6 +76,15 @@
 .ref-link {
 	color: black;
 }
+.scroll-area {
+	height: 800px;
+	width: 100%;
+}
+@media (max-width: $breakpoint-sm-max) {
+	.scroll-area {
+		height: 650px;
+	}
+}
 </style>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
@@ -94,6 +103,13 @@ export default defineComponent({
 		}
 		return {
 			handleRedirect,
+			thumbStyle: {
+				right: "4px",
+				borderRadius: "7px",
+				backgroundColor: "#7b9edb",
+				width: "4px",
+				opacity: 0.75,
+			},
 		};
 	},
 });

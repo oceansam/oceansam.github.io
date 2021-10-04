@@ -95,7 +95,7 @@ export default defineComponent({
 		};
 		const aspirationInfo = {
 			title: "Aspirations",
-			content: `I'm interested in learning and gaining experience in web development as well as creating video games as a side hobby. Furthermore, I enjoy drawing pixel art, creating side projects and reverse engineering tech.`,
+			content: `I'm interested in learning and gaining experience in web/software development as well as creating video games as a side hobby. Furthermore, I enjoy drawing pixel art, creating side projects and reverse engineering tech.`,
 			imgUrl: "assets/mountain.svg",
 		};
 		const projectsInfo = [
