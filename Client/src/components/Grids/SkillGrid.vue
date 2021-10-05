@@ -1,15 +1,8 @@
 <template>
 	<div class="row justify-center items-center nowrap">
-		<span class="txt-enorm push-down">
-			[
-		</span>
 		<div class="col" v-for="(skill, index) in skillList" :key="index">
 			<q-img class="asset" :src="skill.imgUrl" />
-			<span class="txt-header comma">,</span>
 		</div>
-		<span class="txt-enorm push-down">
-			]
-		</span>
 	</div>
 </template>
 

@@ -1,12 +1,14 @@
 <template>
-	<hero-wrapper />
+	<hero-wrapper class="hero" />
 	<!-- Greeting (landing) -->
 	<div class="row justify-center m-top-lg" id="greeting">
 		<content-float :info="greetingInfo" :isLeftFloat="true" />
 	</div>
 	<!-- Who Am I? -->
-	<div class="row justify-center m-top-lg" id="about">
-		<content-float :info="aboutInfo" />
+	<div>
+		<div class="row justify-center m-top-lg " id="about">
+			<content-float class="about" :info="aboutInfo" />
+		</div>
 	</div>
 	<!-- Projects -->
 	<div>
@@ -18,7 +20,6 @@
 		</div>
 	</div>
 	<!-- Skills -->
-
 	<div class="m-top-lg">
 		<top-wave />
 		<div class="waveSection">

@@ -104,11 +104,9 @@ export default defineComponent({
 		return {
 			handleRedirect,
 			thumbStyle: {
-				right: "4px",
-				borderRadius: "7px",
 				backgroundColor: "#7b9edb",
-				width: "4px",
-				opacity: 0.75,
+				opacity: 0.9,
+				width: "5px",
 			},
 		};
 	},
