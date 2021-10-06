@@ -1,24 +1,8 @@
-# vue-quasar-boilerplate
+# Portfolio Redirect
 
-## Project setup
-```
-yarn install
-```
+## Tech Build
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Tech: Vue.js & Typescript
+Hosting: Netlify & Serverless functions
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://oceansam.netlify.app/

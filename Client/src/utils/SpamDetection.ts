@@ -10,7 +10,9 @@ interface Cookie {
 	value: number;
 }
 export function readFormLimit(): Cookie {
-	console.log(document.cookie);
+	if (document.cookie) {
+		console.log("Relax with the spam D:");
+	}
 	const cookieData = document.cookie.split("=");
 	return { name: cookieData[0], value: (cookieData[1] as unknown) as number };
 }

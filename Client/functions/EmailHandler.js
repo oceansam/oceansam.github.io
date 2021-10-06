@@ -1,16 +1,28 @@
 const sgMail = require("@sendgrid/mail");
-require("dotenv").config(); 
+require("dotenv").config();
 exports.handler = async (event) => {
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 	if (event.httpMethod == "POST") {
-		const msg = event.req.body;
-		sgMail
+		const msg = JSON.parse(event.body);
+		return sgMail
 			.send(msg)
-			.then(() => {
-				res.sendStatus(200);
+			.then((res) => {
+				console.log("Email Sent");
+				return {
+					statusCode: 200,
+					body: JSON.stringify(res),
+				};
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error("ERR:", error);
+				return {
+					statusCode: 500,
+					body: JSON.stringify(error),
+				};
 			});
 	}
+	return {
+		statusCode: 405,
+		body: {},
+	};
 };
