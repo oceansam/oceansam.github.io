@@ -23,11 +23,10 @@
 					<q-card-actions>
 						<a
 							v-if="project.githubLink"
-							class="ref-link"
+							class="ref-link no-dec"
 							:href="project.githubLink"
 						>
 							<q-icon class="icon" name="fab fa-github" size="3rem">
-								<a :href="project.githubLink" />
 								<q-tooltip
 									transition-show="scale"
 									class="tool-tip"
@@ -38,7 +37,7 @@
 						</a>
 						<a
 							v-if="project.devpostLink"
-							class="ref-link"
+							class="ref-link no-dec"
 							:href="project.devpostLink"
 						>
 							<q-icon class="icon" name="fab fa-dev" size="3rem">

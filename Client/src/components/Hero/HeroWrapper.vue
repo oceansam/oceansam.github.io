@@ -14,7 +14,7 @@
 				<h1 class="title">{{ title }}<span class="blinker">|</span></h1>
 			</div>
 			<div class="row justify-center q-gutter-xl sky p-bot-lg">
-				<a class="icon" :href="info.githubLink">
+				<a class="icon no-dec" :href="info.githubLink">
 					<q-icon color="white" name="fab fa-github" size="4rem">
 						<q-tooltip
 							transition-show="scale"
@@ -25,7 +25,7 @@
 					</q-icon>
 				</a>
 
-				<a class="icon" :href="info.resumeLink">
+				<a class="icon no-dec" :href="info.resumeLink">
 					<q-icon color="white" name="far fa-file" size="4rem">
 						<q-tooltip
 							transition-show="scale"
@@ -35,7 +35,7 @@
 						>
 					</q-icon>
 				</a>
-				<a class="icon" :href="info.linkedinLink">
+				<a class="icon no-dec" :href="info.linkedinLink">
 					<q-icon color="white" name="fab fa-linkedin" size="4rem">
 						<q-tooltip
 							transition-show="scale"
