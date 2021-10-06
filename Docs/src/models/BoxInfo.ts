@@ -12,7 +12,13 @@ export interface ProjectInfo {
 	techStack: string;
 }
 
-export interface SkillInfo{
+export interface SkillInfo {
 	name: string;
 	imgUrl: string;
+}
+
+export interface MainLinks {
+	githubLink: string;
+	resumeLink: string;
+	linkedinLink: string;
 }

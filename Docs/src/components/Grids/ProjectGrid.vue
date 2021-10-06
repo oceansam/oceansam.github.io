@@ -60,6 +60,7 @@
 @import "@/styles/quasar.variables.scss";
 
 .project-card {
+	height: 100%;
 	width: 500px;
 }
 

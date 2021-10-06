@@ -1,5 +1,5 @@
 <template>
-	<hero-wrapper class="hero" />
+	<hero-wrapper class="hero" :info="heroInfo" />
 	<!-- Greeting (landing) -->
 	<div class="row justify-center m-top-lg" id="greeting">
 		<content-float :info="greetingInfo" :isLeftFloat="true" />
@@ -83,6 +83,11 @@ export default defineComponent({
 			name: "Sam",
 			age: `${age}`,
 		};
+		const heroInfo = {
+			githubLink: "https://github.com/oceansam",
+			resumeLink: "",
+			linkedinLink: "https://www.linkedin.com/in/samee-chowdhury/",
+		};
 		// JSON Data
 		const greetingInfo = {
 			title: "Hello Visitors!",
@@ -101,7 +106,7 @@ export default defineComponent({
 		};
 		const projectsInfo = [
 			{
-				name: "Get Me Home!",
+				name: "Get Me Home",
 				description:
 					"Get Me Home Safe’ is a web based application that visualizes the unsafe areas around the campus through community driven feedback.",
 				featureImage: "assets/projects/staysafe.png",
@@ -110,7 +115,7 @@ export default defineComponent({
 				techStack: "JS/HTML/CSS",
 			},
 			{
-				name: "Smart Pot.",
+				name: "Smart Pot",
 				description:
 					"SmartPot is a modern approach to tracking plant life through everday applications. We make use of both webpages and discord to give users feedback on their plant status.",
 				featureImage: "assets/projects/smartpot.png",
@@ -126,7 +131,7 @@ export default defineComponent({
 				techStack: "TS/VUE/SASS",
 			},
 			{
-				name: "PixelIT!",
+				name: "PixelIT",
 				description:
 					"PixelIT is a memorization game where one views a pixel image for 10 seconds to memorize it. After this 10 second timer they need to recreate the pixel art and have the bot mark its accuracy.",
 				featureImage: "assets/projects/pixelit.png",
@@ -172,6 +177,7 @@ export default defineComponent({
 			aspirationInfo,
 			projectsInfo,
 			skillsInfo,
+			heroInfo,
 		};
 	},
 });
