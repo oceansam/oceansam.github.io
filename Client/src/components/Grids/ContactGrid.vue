@@ -74,7 +74,6 @@ export default defineComponent({
 
 		async function sendEmail() {
 			isLoading.value = true;
-			const url = "http://localhost:7070/contact";
 			const msg = {
 				to: "oceansam101@gmail.com",
 				from: verifiedSender,
@@ -84,7 +83,7 @@ export default defineComponent({
 			const status = readFormLimit();
 			if (status.value == undefined) {
 				axios
-					.post(url, msg)
+					.post("/api/EmailHandler", msg)
 					.then((res) => {
 						if (res) {
 							error.value = "";
