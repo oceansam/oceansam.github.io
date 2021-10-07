@@ -10,8 +10,17 @@
 					<q-img :src="project.featureImage" height="280px" />
 
 					<q-card-section>
-						<div class="txt-xl text-bold q-mt-sm">
-							{{ project.name }}
+						<div class="row justify-between">
+							<div class="txt-xl text-bold q-mt-sm row">
+								{{ project.name }}
+							</div>
+							<div>
+								<q-badge
+									outline
+									:color="getColor(project.tagType)"
+									:label="project.tagType"
+								/>
+							</div>
 						</div>
 						<div class="txt-sm tech-stack text-bold q-mb-md">
 							{{ project.techStack }}
@@ -85,6 +94,11 @@
 		height: 650px;
 	}
 }
+.actions {
+	border: 2px solid red;
+	position: absolute;
+	bottom: 0;
+}
 </style>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
@@ -101,6 +115,19 @@ export default defineComponent({
 		function handleRedirect(url: string) {
 			$route.push(url);
 		}
+		function getColor(tag: string) {
+			switch (tag) {
+				case "Internship":
+					return "orange";
+				case "Hackathon":
+					return "green";
+				case "Side Project":
+					return "pink";
+				case "Under Development":
+					return "red";
+				// code block
+			}
+		}
 		return {
 			handleRedirect,
 			thumbStyle: {
@@ -108,6 +135,8 @@ export default defineComponent({
 				opacity: 0.9,
 				width: "5px",
 			},
+			// Functions
+			getColor,
 		};
 	},
 });

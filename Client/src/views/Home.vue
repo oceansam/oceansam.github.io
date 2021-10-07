@@ -39,23 +39,12 @@
 	<!-- Contact -->
 	<div class="row justify-center m-top-lg" id="contact">
 		<contact-grid />
-		<!-- <pre class="snippet">
-<code>
- <span class="bracket">{</span>
-   <span class="key">"name"</span><span class="colon"> : </span><span class="value">"Sam"</span>
-   <span class="key">"email"</span><span class="colon"> : </span><span class="value">"oceansam101@gmail.com"</span>
-   <span class="key">"phone"</span><span class="colon"> : </span><span class="value">"4169979768"</span>
- <span class="bracket">}</span>
-
-</code>
-		</pre> -->
 	</div>
 	<div class="m-top-lg" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-// import NavigationWrapper from "@/components/Navigation/NavigationWrapper.vue";
 import ContentFloat from "@/components/Hero/ContentFloat.vue";
 import ProjectGrid from "@/components/Grids/ProjectGrid.vue";
 import SkillGrid from "@/components/Grids/SkillGrid.vue";
@@ -66,7 +55,6 @@ import BotWave from "@/components/BotWave.vue";
 export default defineComponent({
 	name: "Home",
 	components: {
-		// NavigationWrapper,
 		ContentFloat,
 		ProjectGrid,
 		SkillGrid,
@@ -85,7 +73,8 @@ export default defineComponent({
 		};
 		const heroInfo = {
 			githubLink: "https://github.com/oceansam",
-			resumeLink: "",
+			resumeLink:
+				"https://drive.google.com/file/d/1Rz3Du__uCZnAT791uK3YVRj0jkxY3uiV/view?usp=sharing",
 			linkedinLink: "https://www.linkedin.com/in/samee-chowdhury/",
 		};
 		// JSON Data
@@ -113,6 +102,7 @@ export default defineComponent({
 				githubLink: "https://github.com/oceansam/SafeSpace",
 				devpostLink: "https://devpost.com/software/get-me-home-safe",
 				techStack: "JS/HTML/CSS",
+				tagType: "Hackathon",
 			},
 			{
 				name: "Smart Pot",
@@ -122,6 +112,7 @@ export default defineComponent({
 				githubLink: "https://github.com/oceansam/SmartPot",
 				devpostLink: "https://devpost.com/software/smartpot-f149eq",
 				techStack: "TS/VUE/SASS",
+				tagType: "Hackathon",
 			},
 			{
 				name: "ArtBlock",
@@ -129,15 +120,26 @@ export default defineComponent({
 					"Art Block is a secure platform for exhibiting and collecting fine art digital assets, built exclusively for contemporary artists, galleries, and collectors.",
 				featureImage: "assets/projects/artblock.png",
 				techStack: "TS/VUE/SASS",
+				tagType: "Internship",
+			},
+			{
+				name: "Forced Perspective",
+				description:
+					"Forced perspective is an attempt at the recreation of a technique used in Superliminal at which the size of an object changes unknowingly to the user.",
+				featureImage: "assets/projects/forcedpov.jpg",
+				githubLink: "https://github.com/oceansam/ForcedPerspective",
+				techStack: "C#/Unity",
+				tagType: "Side Project",
 			},
 			{
 				name: "PixelIT",
 				description:
-					"PixelIT is a memorization game where one views a pixel image for 10 seconds to memorize it. After this 10 second timer they need to recreate the pixel art and have the bot mark its accuracy.",
+					"PixelIT is a memorization game where one views a pixel image for 10 seconds to memorize it. After 10 seconds they need to recreate image and have a bot mark its accuracy.",
 				featureImage: "assets/projects/pixelit.png",
 				githubLink: "https://github.com/oceansam/SmartPot",
 				devpostLink: "https://devpost.com/software/smartpot-f149eq",
 				techStack: "JS/HTML/CSS",
+				tagType: "Hackathon",
 			},
 		];
 		const skillsInfo = [

@@ -1,17 +1,16 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-
+import Error404 from "../views/Error404Page.vue";
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/",
 		name: "Home",
 		component: Home,
 	},
-	{
-		path: "/about",
-		name: "About",
 
-		component: () => import("../views/About.vue"),
+	{
+		path: "/:catchAll(.*)*",
+		component: Error404,
 	},
 ];
 
