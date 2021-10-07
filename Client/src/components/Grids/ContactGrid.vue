@@ -44,8 +44,9 @@
 					type="textarea"
 				/>
 				<q-btn class="submit-button q-mt-md" type="submit" :loading="isLoading"
-					><div class="txt-md">Send</div></q-btn
-				>
+					><div class="txt-md" v-if="!isSent">Send</div>
+					<q-icon border name="task_alt" v-if="isSent"></q-icon>
+				</q-btn>
 			</q-form>
 		</div>
 	</div>
@@ -63,7 +64,7 @@ export default defineComponent({
 		const message = ref("");
 		const verifiedSender = "s2chowdhury@ryerson.ca";
 		const error = ref("");
-
+		const isSent = ref(false);
 		const isLoading = ref(false);
 
 		function reset() {
@@ -71,7 +72,11 @@ export default defineComponent({
 			email.value = "";
 			message.value = "";
 		}
-
+		// Notifies the user that the email has been sent
+		function notifyEmail() {
+			isSent.value = true;
+			setTimeout(() => (isSent.value = false), 2500);
+		}
 		async function sendEmail() {
 			isLoading.value = true;
 			const msg = {
@@ -88,6 +93,8 @@ export default defineComponent({
 						if (res) {
 							error.value = "";
 							setFormLimit();
+							reset();
+							notifyEmail();
 						}
 						isLoading.value = false;
 					})
@@ -109,6 +116,7 @@ export default defineComponent({
 			message,
 			error,
 			isLoading,
+			isSent,
 			// Functions
 			sendEmail,
 			reset,
