@@ -88,7 +88,7 @@ export default defineComponent({
 			const status = readFormLimit();
 			if (status.value == undefined) {
 				axios
-					.post("/api/EmailHandler", msg)
+					.post("/api/EmailWorker/EmailWorker", msg)
 					.then((res) => {
 						if (res) {
 							error.value = "";
