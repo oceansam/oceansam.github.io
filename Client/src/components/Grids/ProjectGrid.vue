@@ -58,6 +58,20 @@
 								>
 							</q-icon>
 						</a>
+						<a
+							v-if="project.demoLink"
+							class="ref-link no-dec"
+							:href="project.demoLink"
+						>
+							<q-icon class="icon" name="web" size="3rem">
+								<q-tooltip
+									transition-show="scale"
+									class="tool-tip"
+									transition-hide="scale"
+									>Demo</q-tooltip
+								>
+							</q-icon>
+						</a>
 					</q-card-actions>
 				</q-card>
 			</div>
