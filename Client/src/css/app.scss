@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+// @import '~quasar-addon-styl';
+
+* {
+  font-family: "Source Code Pro", monospace;
+}
+// @media (max-width: $breakpoint-xl-max) {
+//   html {
+//     font-size: 14px;
+//   }
+// }
+// @media (max-width: $breakpoint-lg-max) {
+//   html {
+//     font-size: 15px;
+//   }
+// }
+// @media (max-width: $breakpoint-md-max) {
+//   x html {
+//     font-size: 16px;
+//   }
+// }
+// @media (max-width: $breakpoint-sm-max) {
+//   html {
+//     font-size: 12px;
+//   }
+// }
+.icon {
+  &:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+  }
+}
+
+.m-top-lg {
+  margin-top: 150px;
+}
+.p {
+  &-bot-lg {
+    padding-bottom: 150px;
+  }
+  &-top-lg {
+    padding-top: 150px;
+  }
+}
+
+.txt {
+  &-sm {
+    font-size: 1rem;
+  }
+  &-md {
+    font-size: 1.5rem;
+  }
+  &-lg {
+    font-size: 2rem;
+  }
+  &-xl {
+    font-size: 2.2rem;
+  }
+  &-header {
+    font-size: 3.5rem;
+  }
+  &-title {
+    font-size: 5rem;
+  }
+  &-enorm {
+    font-size: 8rem;
+  }
+}
+
+.no-dec {
+  text-decoration: none;
+}
