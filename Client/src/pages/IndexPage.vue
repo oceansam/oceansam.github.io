@@ -1,12 +1,16 @@
 <template>
   <div>
     <hero-section :info="heroInfo" />
+    <project-section :projects="projectsInfo" />
   </div>
 </template>
 
 <script>
 import HeroSection from "../components/sections/HeroSection.vue";
-import { defineComponent } from "vue";
+import { defineComponent, onBeforeMount } from "vue";
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import NavigationDialog from "../components/Dialogs/NavigationDialog.vue";
 import profile from "../utils/data.json";
 export default defineComponent({
   name: "IndexPage",
@@ -14,6 +18,16 @@ export default defineComponent({
     HeroSection,
   },
   setup() {
+    const $q = useQuasar();
+    const $route = useRouter();
+    onBeforeMount(() => {
+      $q.dialog({
+        component: NavigationDialog,
+      }).onOk(() => {
+        $route.push("/");
+      });
+    });
+
     // Dynamic Params
     const age = 20;
     const year = "third";
