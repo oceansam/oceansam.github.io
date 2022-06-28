@@ -4,6 +4,7 @@
       <q-card-section class="txt-lg text-center">
         Choose a website to visit
       </q-card-section>
+      <!-- <q-separator inset="center" color="black" /> -->
       <q-card-section class="txt-sm text-center">
         If you use an accessibility tool, please navigate to the accessible
         version of the website.

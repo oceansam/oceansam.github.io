@@ -5,6 +5,10 @@
 * {
   font-family: "Source Code Pro", monospace;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 // @media (max-width: $breakpoint-xl-max) {
 //   html {
 //     font-size: 14px;
@@ -70,4 +74,12 @@
 
 .no-dec {
   text-decoration: none;
+}
+
+.test {
+  border: 2px solid red;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
 }

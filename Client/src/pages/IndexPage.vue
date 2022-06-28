@@ -1,32 +1,64 @@
 <template>
-  <div>
-    <hero-section :info="heroInfo" />
-    <project-section :projects="projectsInfo" />
+  <div class="row items-center container window-height">
+    <div class="row full-width">
+      <div class="col-6 q-pl-xl">
+        <div>
+          <div ref="leftColumn">
+            <menu-container
+              style="width: 60%"
+              @transitionLeave="animateLeave"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-6" ref="rightColumn">
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HeroSection from "../components/sections/HeroSection.vue";
-import { defineComponent, onBeforeMount } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent, onBeforeMount, ref } from "vue";
+import { animateFrom } from "../utils/animate";
+import { onBeforeRouteLeave } from "vue-router";
 import { useQuasar } from "quasar";
+import MenuContainer from "../components/MenuContainer.vue";
+
 import NavigationDialog from "../components/Dialogs/NavigationDialog.vue";
 import profile from "../utils/data.json";
 export default defineComponent({
-  name: "IndexPage",
   components: {
-    HeroSection,
+    MenuContainer,
   },
   setup() {
     const $q = useQuasar();
-    const $route = useRouter();
-    onBeforeMount(() => {
-      $q.dialog({
-        component: NavigationDialog,
-      }).onOk(() => {
-        $route.push("/");
-      });
-    });
+
+    const leftColumn = ref(null);
+    const rightColumn = ref(null);
+    function animateLeave() {
+      console.log("LEAVING ROUTE");
+      animateFrom(leftColumn.value, -1, 800, 0, 0.5);
+      animateFrom(rightColumn.value, 1, 800, 0, 0.5);
+    }
+    // onBeforeMount(() => {
+    //   $q.dialog({
+    //     component: NavigationDialog,
+    //   }).onOk(() => {
+    //     $route.push("/");
+    //   });
+    // });
 
     // Dynamic Params
     const age = 20;
@@ -68,6 +100,9 @@ export default defineComponent({
     const skillsInfo = profile.skills;
     return {
       meta,
+      leftColumn,
+      rightColumn,
+      animateLeave,
       greetingInfo,
       aboutInfo,
       aspirationInfo,
@@ -78,3 +113,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+
+</style>
