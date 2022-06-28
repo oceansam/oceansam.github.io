@@ -9,10 +9,3 @@ export default defineComponent({
   setup() {},
 });
 </script>
-<template>
-    <div class="row">
-        
-
-    </div>
-
-</template>
