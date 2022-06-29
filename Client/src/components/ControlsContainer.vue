@@ -34,10 +34,4 @@
   </div>
 </template>
 
-<style scoped>
-.control-option {
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 2.2rem;
-}
-</style>
+<style scoped></style>

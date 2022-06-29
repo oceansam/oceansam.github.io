@@ -34,10 +34,10 @@ import { defineComponent, onBeforeMount, ref } from "vue";
 import { animateFrom } from "../utils/animate";
 import { onBeforeRouteLeave } from "vue-router";
 import { useQuasar } from "quasar";
-import MenuContainer from "../components/MenuContainer.vue";
+import MenuContainer from "components/MenuContainer.vue";
 
-import NavigationDialog from "../components/Dialogs/NavigationDialog.vue";
-import profile from "../utils/data.json";
+import NavigationDialog from "components/Dialogs/NavigationDialog.vue";
+import profile from "../utils/data";
 export default defineComponent({
   components: {
     MenuContainer,
@@ -114,6 +114,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
