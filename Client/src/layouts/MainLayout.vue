@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <q-page-container>
+    <q-header class="nav-header">
       <div class="txt-header absolute-top-left q-pa-xl">
         <div class="text-white bg-black q-pa-md">Samee Chowdhury</div>
         <div class="row txt-md text-black q-pa-sm">
@@ -12,6 +12,8 @@
           <div>&ThickSpace;Developer</div>
         </div>
       </div>
+    </q-header>
+    <q-page-container>
       <router-view />
       <div class="absolute-bottom-right">
         <controls-container />
@@ -128,7 +130,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .role-container {
   height: 36px;
-  overflow: hidden;
+}
+.nav-header {
+  z-index: 0;
 }
 .role {
   // border-right: 2px solid red;

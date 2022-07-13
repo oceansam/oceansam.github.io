@@ -11,33 +11,22 @@
           </div>
         </div>
       </div>
-      <div class="col-6" ref="rightColumn">
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
-        gggggggggggggggggg gggggggggggggggggg gggggggggggggggggg
+      <div class="col-6" style="border: 2px solid red" ref="rightColumn">
+        <canvas id="bg"> </canvas>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, onBeforeMount, ref } from "vue";
+import { defineComponent, onBeforeMount, onMounted, ref } from "vue";
 import { animateFrom } from "../utils/animate";
-import { onBeforeRouteLeave } from "vue-router";
 import { useQuasar } from "quasar";
 import MenuContainer from "components/MenuContainer.vue";
-
 import NavigationDialog from "components/Dialogs/NavigationDialog.vue";
-import profile from "../utils/data";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 export default defineComponent({
   components: {
     MenuContainer,
@@ -52,6 +41,63 @@ export default defineComponent({
       animateFrom(leftColumn.value, -1, 800, 0, 0.5);
       animateFrom(rightColumn.value, 1, 800, 0, 0.5);
     }
+
+    onMounted(() => {
+      const scene = new THREE.Scene();
+
+      // ---------- Model Loading ---------- \\
+      const loader = new GLTFLoader();
+      loader.load(
+        "assets/PokemonCard.gltf",
+        (gltf) => {
+          console.log(gltf);
+          const root = gltf.scene;
+          root.scale.set(1, 1, 1);
+          scene.add(root);
+        },
+        (xhr) => {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        (err) => {
+          console.log("An error occurred");
+        }
+      );
+      // ---------- Lighting ---------- \\
+      const light = new THREE.DirectionalLight(0xffffff, 1);
+      light.position.set(2, 2, 5);
+      scene.add(light);
+
+      // ---------- Camera ---------- \\
+      const cam = new THREE.PerspectiveCamera(50, 2, 2, 4);
+      cam.position.set(1, 2, 2);
+      scene.add(cam);
+
+      // ---------- Scene ---------- \\
+      scene.background = new THREE.Color(0xffffff);
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector("#bg"),
+      });
+
+      // ---------- Controls ---------- \\
+      const controls = new OrbitControls(cam, renderer.domElement);
+      controls.minPolarAngle = Math.PI / 2;
+      controls.maxPolarAngle = Math.PI / 2;
+      controls.enablePan = false;
+      controls.enableZoom = false;
+      controls.update();
+
+      // ---------- Renderer ---------- \\
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+      renderer.shadowMap.enabled = true;
+      renderer.gammaOutput = true;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, cam);
+      }
+      animate();
+    });
     // onBeforeMount(() => {
     //   $q.dialog({
     //     component: NavigationDialog,
@@ -75,7 +121,6 @@ export default defineComponent({
     };
     const stringMap = ["st", "nd", "rd", "th", "th"];
     // JSON Data
-    const projectsInfo = profile.projects;
     const universityYear = new Date().getFullYear() - 2019;
     const postfix = stringMap[universityYear - 1];
     const greetingInfo = {
@@ -96,8 +141,6 @@ export default defineComponent({
       } years old and am passionate about creating things. I make side projects that interest me. Whether its through applications, games with the Unity engine, or through the web like what you're reading right now!`,
       imgUrl: "assets/tree.svg",
     };
-    const aspirationInfo = profile.aspirationQuote;
-    const skillsInfo = profile.skills;
     return {
       meta,
       leftColumn,
@@ -105,9 +148,6 @@ export default defineComponent({
       animateLeave,
       greetingInfo,
       aboutInfo,
-      aspirationInfo,
-      projectsInfo,
-      skillsInfo,
       heroInfo,
     };
   },

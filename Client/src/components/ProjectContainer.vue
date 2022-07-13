@@ -1,11 +1,17 @@
 <template>
-  <div class="row q-gutter-x-md">
-    <project-card
-      v-for="(project, i) in projectList"
-      :key="i"
-      :project="project"
-    />
-  </div>
+  <q-scroll-area
+    style="height: 38rem; max-width: 95rem"
+    :thumb-style="thumbStyle"
+    visible
+  >
+    <div class="row q-gutter-xl q-pa-md">
+      <project-card
+        v-for="(project, i) in projectList"
+        :key="i"
+        :project="project"
+      />
+    </div>
+  </q-scroll-area>
 </template>
 
 <script>
@@ -15,6 +21,16 @@ export default {
   components: {
     ProjectCard,
   },
-  setup() {},
+  setup() {
+    return {
+      thumbStyle: {
+        right: "4px",
+        borderRadius: "7px",
+        backgroundColor: "black",
+        width: "6px",
+        opacity: 0.75,
+      },
+    };
+  },
 };
 </script>
