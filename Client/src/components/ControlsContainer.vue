@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-center q-gutter-x-xl q-pa-md">
+  <div class="nav-options row items-center q-gutter-x-xl q-pa-md">
     <div>
       <div class="row items-center q-gutter-x-sm">
         <!-- <div class="control-option text-bold txt-sm text-center">E</div> -->
@@ -34,4 +34,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.nav-options {
+  z-index: 5;
+}
+</style>

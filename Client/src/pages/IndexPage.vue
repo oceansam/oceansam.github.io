@@ -1,9 +1,11 @@
 <template>
   <div class="row items-center container window-height">
-    <div class="row full-width">
+    <div class="absolute-bottom test full-width bg-black" ref="coverScreen" />
+    <div class="row full-width full-height" style="height: 650px">
       <div class="col-6 q-pl-xl">
-        <div>
-          <div ref="leftColumn">
+        <div ref="leftColumn">
+          <header-container />
+          <div>
             <menu-container
               style="width: 60%"
               @transitionLeave="animateLeave"
@@ -11,8 +13,8 @@
           </div>
         </div>
       </div>
-      <div class="col-6" style="border: 2px solid red" ref="rightColumn">
-        <canvas id="bg"> </canvas>
+      <div class="col" ref="rightColumn">
+        <canvas class="full-width full-height" id="bg"> </canvas>
       </div>
     </div>
   </div>
@@ -23,19 +25,23 @@ import { defineComponent, onBeforeMount, onMounted, ref } from "vue";
 import { animateFrom } from "../utils/animate";
 import { useQuasar } from "quasar";
 import MenuContainer from "components/MenuContainer.vue";
+import HeaderContainer from "components/HeaderContainer.vue";
 import NavigationDialog from "components/Dialogs/NavigationDialog.vue";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { gsap } from "gsap";
 export default defineComponent({
   components: {
     MenuContainer,
+    HeaderContainer,
   },
   setup() {
     const $q = useQuasar();
 
     const leftColumn = ref(null);
     const rightColumn = ref(null);
+    const coverScreen = ref(null);
     function animateLeave() {
       console.log("LEAVING ROUTE");
       animateFrom(leftColumn.value, -1, 800, 0, 0.5);
@@ -48,11 +54,11 @@ export default defineComponent({
       // ---------- Model Loading ---------- \\
       const loader = new GLTFLoader();
       loader.load(
-        "assets/PokemonCard.gltf",
+        "assets/PokemonCard.glb",
         (gltf) => {
           console.log(gltf);
           const root = gltf.scene;
-          root.scale.set(1, 1, 1);
+          root.scale.set(1.8, 1, 1);
           scene.add(root);
         },
         (xhr) => {
@@ -63,12 +69,18 @@ export default defineComponent({
         }
       );
       // ---------- Lighting ---------- \\
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(2, 2, 5);
-      scene.add(light);
+      const directionalLight_Front = new THREE.DirectionalLight(0xffffff, 0.7);
+      directionalLight_Front.position.set(0, 0, 10);
+      const directionalLight_Back = new THREE.DirectionalLight(0xffffff, 0.7);
+      directionalLight_Back.position.set(0, 0, -10);
+      const globalLight = new THREE.PointLight(0xffffff, 1);
 
+      scene.add(directionalLight_Back);
+      scene.add(directionalLight_Front);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+      scene.add(globalLight);
       // ---------- Camera ---------- \\
-      const cam = new THREE.PerspectiveCamera(50, 2, 2, 4);
+      const cam = new THREE.PerspectiveCamera(45, 2, 1);
       cam.position.set(1, 2, 2);
       scene.add(cam);
 
@@ -84,20 +96,23 @@ export default defineComponent({
       controls.maxPolarAngle = Math.PI / 2;
       controls.enablePan = false;
       controls.enableZoom = false;
-      controls.update();
+      controls.autoRotate = true;
 
       // ---------- Renderer ---------- \\
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+      renderer.setSize(window.innerWidth / 2, window.innerHeight / 1.5);
       renderer.shadowMap.enabled = true;
       renderer.gammaOutput = true;
 
       function animate() {
         requestAnimationFrame(animate);
+        controls.update();
+
         renderer.render(scene, cam);
       }
       animate();
     });
+    // @PLO
     // onBeforeMount(() => {
     //   $q.dialog({
     //     component: NavigationDialog,
@@ -145,6 +160,7 @@ export default defineComponent({
       meta,
       leftColumn,
       rightColumn,
+      coverScreen,
       animateLeave,
       greetingInfo,
       aboutInfo,
@@ -153,5 +169,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped></style>

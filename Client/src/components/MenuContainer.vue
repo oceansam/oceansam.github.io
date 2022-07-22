@@ -3,7 +3,7 @@
     <q-item
       clickable
       class="menu-item"
-      :class="selection == i ? 'active-item1 ' : ''"
+      :class="selection == i ? 'active-item1' : ''"
       @mouseover="selection = i"
       v-for="(item, i) in menuSelections"
       @click.prevent="() => navigateTo(item.route)"
@@ -35,20 +35,28 @@ export default {
     const selection = ref(0);
     const arrow = ref(null);
     const $router = useRouter();
+
+    // Detect key input
     window.addEventListener("keydown", ($event) => {
       let selectCur = selection.value;
-
-      // Navigation
-      if ($event.key == "ArrowUp") {
-        selection.value =
-          selectCur == 0 ? menuSelections.length - 1 : selectCur - 1;
-      } else if ($event.key == "ArrowDown") {
-        selection.value =
-          selectCur == menuSelections.length - 1 ? 0 : selectCur + 1;
-      }
-
-      if ($event.key == "Enter") {
-        navigateTo(menuSelections[selectCur].route);
+      console.log($event.key);
+      switch ($event.key) {
+        case "ArrowUp":
+          selection.value =
+            selectCur == 0 ? menuSelections.length - 1 : selectCur - 1;
+          break;
+        case "ArrowDown":
+          selection.value =
+            selectCur == menuSelections.length - 1 ? 0 : selectCur + 1;
+          break;
+        case "Enter":
+          navigateTo(menuSelections[selectCur].route);
+          break;
+        case "Backspace":
+          $router.go(-1);
+          break;
+        default:
+          break;
       }
     });
 
@@ -106,6 +114,7 @@ export default {
 }
 .active-item {
   background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.377));
+  z-index: 1;
 }
 .active-item1 {
   color: white !important;

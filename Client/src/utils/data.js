@@ -6,7 +6,7 @@ export const projects = [
     featureImage: "sheltershare.png",
     githubLink: "https://github.com/Aloinn/Shelter-Share",
     devpostLink: "https://devpost.com/software/shelter-share",
-    techStack: "Vue.js/Firebase/SCSS",
+    techStack: ["Vue", "Firebase", "SASS"],
     tagType: "Hackathon",
     field: "web",
   },
@@ -17,7 +17,7 @@ export const projects = [
     featureImage: "herneeds.png",
     githubLink: "https://github.com/oceansam/HerNeeds",
     devpostLink: "https://devpost.com/software/herneeds",
-    techStack: "Vue.js/GCP/Firebase",
+    techStack: ["Vue", "Firebase", "GCP"],
     tagType: "Hackathon",
     field: "web",
   },
@@ -28,7 +28,7 @@ export const projects = [
     featureImage: "staysafe.png",
     githubLink: "https://github.com/oceansam/SafeSpace",
     devpostLink: "https://devpost.com/software/get-me-home-safe",
-    techStack: "JS/HTML/CSS",
+    techStack: ["JS", "HTML", "CSS"],
     tagType: "Hackathon",
     field: "web",
   },
@@ -39,9 +39,12 @@ export const projects = [
     featureImage: "smartpot.png",
     githubLink: "https://github.com/oceansam/SmartPot",
     devpostLink: "https://devpost.com/software/smartpot-f149eq",
-    techStack: "TS/VUE/SASS",
+    techStack: ["TS", "Vue", "SASS"],
     tagType: "Hackathon",
     field: "web",
+    isWinner: {
+      prize: "Top 15",
+    },
   },
 
   {
@@ -49,50 +52,51 @@ export const projects = [
     description:
       "Ball street is a token based platform that provides a place to purchase trading cards. A new space emerging for buyers and sellers to participate in trading cards with crypto.",
     featureImage: "ballstreet.jpg",
-    techStack: "TS/VUE/SASS",
+    techStack: ["TS", "Vue", "SASS"],
     tagType: "Internship",
     field: "web",
   },
-  {
-    name: "QRSVP",
-    description:
-      "QRsvp allows event coordinators to create QR codes that can allow invitees to do specific things with a scan like entering a venue, connecting to wifi, or entering exclusive events.",
-    featureImage: "qrsvp.jpg",
-    githubLink: "",
-    devpostLink: "",
-    techStack: "Vue.js/Open Screen API/Firebase",
-    tagType: "Hackathon",
-    field: "web",
-  },
-  {
-    name: "Palette Generator",
-    description:
-      "Small project made to generate randomized color palettes for my pixel art projects.",
-    featureImage: "cpgen.png",
-    githubLink: "https://github.com/oceansam/PaletteGenerator",
-    demoLink: "https://oceansam.github.io/PaletteGenerator/",
-    techStack: "JS/REACT/SASS",
-    tagType: "Side Project",
-    field: "web",
-  },
-  {
-    name: "AF1 Tracker",
-    description:
-      "Airforce 1 tracker is a small website I made to quickly track airfoces and their prices from Nike store internal api.",
-    featureImage: "af1track.png",
-    githubLink: "https://github.com/oceansam/AF1-Tracker",
-    demoLink: "https://oceansam.github.io/AF1-Tracker/",
-    techStack: "JS/VUE/SASS",
-    tagType: "Side Project",
-    field: "web",
-  },
+
+  // {
+  //   name: "QRSVP",
+  //   description:
+  //     "QRsvp allows event coordinators to create QR codes that can allow invitees to do specific things with a scan like entering a venue, connecting to wifi, or entering exclusive events.",
+  //   featureImage: "qrsvp.jpg",
+  //   githubLink: "",
+  //   devpostLink: "",
+  //   techStack: "Vue.js/Open Screen API/Firebase",
+  //   tagType: "Hackathon",
+  //   field: "web",
+  // },
+  // {
+  //   name: "Palette Generator",
+  //   description:
+  //     "Small project made to generate randomized color palettes for my pixel art projects.",
+  //   featureImage: "cpgen.png",
+  //   githubLink: "https://github.com/oceansam/PaletteGenerator",
+  //   demoLink: "https://oceansam.github.io/PaletteGenerator/",
+  //   techStack: "JS/REACT/SASS",
+  //   tagType: "Side Project",
+  //   field: "web",
+  // },
+  // {
+  //   name: "AF1 Tracker",
+  //   description:
+  //     "Airforce 1 tracker is a small website I made to quickly track airfoces and their prices from Nike store internal api.",
+  //   featureImage: "af1track.png",
+  //   githubLink: "https://github.com/oceansam/AF1-Tracker",
+  //   demoLink: "https://oceansam.github.io/AF1-Tracker/",
+  //   techStack: "JS/VUE/SASS",
+  //   tagType: "Side Project",
+  //   field: "web",
+  // },
   {
     name: "Forced Perspective",
     description:
       "Forced perspective is an attempt at the recreation of a technique used in Superliminal at which the size of an object changes unknowingly to the user.",
     featureImage: "forcedpov.jpg",
     githubLink: "https://github.com/oceansam/ForcedPerspective",
-    techStack: "C#/Unity",
+    techStack: ["C#", "Unity"],
     tagType: "Side Project",
     field: "game",
   },
@@ -101,19 +105,23 @@ export const projects = [
     description:
       "A mobile app that helps users that suffer from obsessive compulsive disorder to prevent reoccuring cycles compulsion.",
     featureImage: "ocdtrack.jpg",
-    techStack: "React-Native/Expo",
+    techStack: ["React-Native", "Expo"],
     tagType: "Side Project",
     field: "mobile",
   },
   {
     name: "LifeHairStudio",
     featureImage: "lifehair.jpg",
+    techStack: ["Vue", "Quasar", "Gsap"],
+    tagType: "Contract",
     field: "web",
   },
   {
     name: "RedThread",
     featureImage: "redthread.jpg",
     field: "game",
+    techStack: ["C#", "Unity"],
+    tagType: "Side Project",
   },
 ];
 export const skills = [
@@ -150,7 +158,8 @@ export const workExperience = [
   {
     companyName: "Global Creative Technology",
     role: "Frontend Developer",
-    description: "Created go-to market applications with Firebase, Vue.js, Typescript and CSS. "
+    description:
+      "Created go-to market applications with Firebase, Vue.js, Typescript and CSS. ",
   },
   {
     companyName: "GetQuorum",
@@ -166,4 +175,52 @@ export const aspirationQuote = {
   content:
     "I'm interested in learning and gaining experience in web/software development as well as creating video games as a side hobby. Furthermore, I enjoy drawing pixel art, creating side projects and reverse engineering tech.",
   imgUrl: "assets/mountain.svg",
+};
+
+export const ICON_NAMES = {
+  Vue: {
+    name: "fa-brands fa-vuejs",
+    color: "green",
+  },
+  React: {
+    name: "fa-brands fa-react",
+    color: "light-blue",
+  },
+  Firebase: {
+    name: "fa-solid fa-fire",
+    color: "orange",
+  },
+  GCP: {
+    name: "fa-brands fa-google",
+    color: "cyan",
+  },
+  SASS: {
+    name: "fa-brands fa-sass",
+    color: "pink",
+  },
+  JS: {
+    name: "fa-brands fa-js",
+    color: "yellow",
+  },
+  TS: {
+    name: "fa-brands fa-js",
+    color: "light-blue",
+  },
+  "React-Native": {
+    name: "fa-brands fa-react",
+    color: "light-blue",
+  },
+  Unity: "fa-brands fa-unity",
+  HTML: {
+    name: "fa-brands fa-html5",
+    color: "orange-10",
+  },
+  CSS: {
+    name: "fa-brands fa-css3",
+    color: "blue",
+  },
+  Expo: {
+    name: "fa-solid fa-angle-up",
+    color: "white",
+  },
 };

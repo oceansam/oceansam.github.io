@@ -1,48 +1,31 @@
 <template>
-  <div class="row justify-center items-center container">
-    <div ref="projectCard">
-      <q-card class="field-card" bordered flat>
-        <q-card-section class="row items-center justify-between">
-          <q-icon
-            @click="navigationAction(-1)"
-            name="arrow_back"
-            size="2rem"
-            class="control-option"
+  <div class="bg-black window-height" ref="page">
+    <!-- Root column -->
+    <div class="row items-center full-height">
+      <q-scroll-area style="height: 40rem; width: 100%">
+        <div class="row no-wrap">
+          <project-card
+            v-for="(project, j) in projectList"
+            :key="j"
+            :project="project"
           />
-          <q-tabs
-            v-model="tab"
-            @update:model-value="updateProjectList"
-            narrow-indicator
-            dense
-            align="justify"
-            class="text-primary q-mx-md"
-          >
-            <q-tab :ripple="false" name="web" class="txt-md">Web</q-tab>
-            <q-tab :ripple="false" name="mobile" class="txt-md">Mobile</q-tab>
-            <q-tab :ripple="false" name="game" class="txt-md">Game</q-tab>
-          </q-tabs>
-          <q-icon
-            @click="navigationAction(1)"
-            name="arrow_forward"
-            size="2rem"
-            class="control-option"
-          />
-        </q-card-section>
-        <!-- <q-spinner v-if="isLoading" color="primary" size="3em" :thickness="2" /> -->
-
-        <q-carousel
-          height="40rem"
-          v-model="tab"
-          animated
-          transition-prev="slide-right"
-          transition-next="slide-left"
-        >
-          <q-carousel-slide v-for="(item, i) in navList" :key="i" :name="item">
-            <project-container :projectList="projectList" />
-          </q-carousel-slide>
-        </q-carousel>
-      </q-card>
+        </div>
+      </q-scroll-area>
     </div>
+    <!-- <div class="row">
+      <div class="row full-width items-center">
+        <div v-for="(projectRow, i) in projectList" :key="i">
+          <div class="q-my-xl">
+            <div class="text-center">{{ projectRow.header }}</div>
+          </div>
+          <project-card
+            v-for="(project, j) in projectRow.filterArray"
+            :key="j"
+            :project="project"
+          />
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -51,22 +34,19 @@ import { onMounted, ref } from "vue";
 import { projects } from "../utils/data";
 import { gsap } from "gsap";
 // Components
-import ProjectContainer from "components/ProjectContainer.vue";
+import ProjectCard from "components/cards/ProjectCard.vue";
 export default {
   components: {
-    ProjectContainer,
+    ProjectCard,
   },
   setup() {
     const tab = ref("web");
     const navList = ["web", "mobile", "game"];
-    const projectList = ref([]);
     const isLoading = ref(false);
+    const currentHover = ref(-1);
+    const page = ref(null);
+
     function navigationAction(navIndex) {}
-    function updateProjectList() {
-      isLoading.value = true;
-      projectList.value = projects.filter((proj) => proj.field == tab.value);
-      isLoading.value = false;
-    }
 
     const projectCard = ref(null);
 
@@ -78,17 +58,17 @@ export default {
       );
     }
     onMounted(() => {
-      updateProjectList();
       animateSlideUp();
+      gsap.fromTo(page.value, { height: 0 }, { height: window.innerHeight });
     });
 
     return {
+      currentHover,
       tab,
       isLoading,
-      updateProjectList,
       navigationAction,
       navList,
-      projectList,
+      projectList: projects,
       projectCard,
     };
   },
@@ -99,5 +79,8 @@ export default {
 .field-card {
   width: 95rem;
   height: 45rem;
+}
+.blur-column {
+  filter: blur(5px);
 }
 </style>
